@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <title>Quick Start - Leaflet</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
+     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+     <style type="text/css">
+      <!--
+       #mapid { height: 600px; width: 600px}
+     -->
+     </style>
+   </head>
+   <body>
+     <div id="mapid"></div>
+     <script>
+  function cssLoad(cssFile){
+     if(document.all){
+       document.createStyleSheet(cssFile);
+     }else{
+       var link = document.createElement("link");
+       link.rel = "stylesheet";
+       link.href = cssFile;
+       link.type = "text/css"
+       document.getElementsByTagName('head')[0].appendChild(link);
+     }
+   }
+   cssLoad("https://www.achiachi.net/blog/_outside/leaflet/v1/leaflet.css");
+
+   function addOnload(evtFunc){
+     if(window.addEventListener) {
+       window.addEventListener('load', evtFunc, false);
+     } else if(window.attachEvent){ //IE用
+       window.attachEvent('onload', evtFunc);
+     } else {
+       //alert('window.onload エラー');
+     }
+   }
+
+   var mymap;
+   addOnload(function(){
+     mymap = L.map('mapid'); 
+     L.tileLayer('https://c.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+       maxZoom: 18,
+       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors, '
+     }).addTo(mymap);
+
+
+     //マーカーをグループ化する変数を準備
+     iconMarkers = L.featureGroup();
+
+     //アイコンマーカーをiconMarkersグループに登録
+     iconMarkers.addLayer( L.marker([34.7429914,133.798646]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=15upZ-O3LeyOGxDuqq3WeFqH0D9RU8tvF" width="300" height="200">
+   <p>岡山市立足守中学校</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.648621,133.922966]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1bS3r9k6unlhHGOl0RiJSo0OUKd7_z9-6" width="300" height="200">
+   <p>岡山市立岡輝中学校</p></div>`) );
+
+      iconMarkers.addLayer( L.marker([34.680721,133.866138]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=11PiTk7yGkXvpfob8mq4RG2VSR1UqniNf" width="300" height="200">
+   <p>岡山市立中山中学校</p></div>`) );
+
+         iconMarkers.addLayer( L.marker([34.6671313,133.9015321]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1AqCQOIZQKIpGDnuqWvjaB1rwp03QLljW" width="300" height="200">
+   <p>岡山市立石井中学校</p></div>`) );
+
+      iconMarkers.addLayer( L.marker([34.6875508,133.8183652]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1KK4KiLU8rBOs88ObwMfFLd_1l_ysjIgo" width="300" height="200">
+   <p>岡山市立高松中学校</p></div>`) );
+
+      iconMarkers.addLayer( L.marker([34.8571502,133.9056789]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1DgLBq7mHl5YVwwmoJ72ArHun9YTMf1W0" width="300" height="200">
+   <p>岡山市立建部中学校</p></div>`) );
+
+      iconMarkers.addLayer( L.marker([34.6381466,133.8807343]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1tKGF7F-QmlMzNoZn8EvMEiv0RDMNRl-e" width="300" height="200">
+   <p>岡山市立御南中学校</p></div>`) );
+
+      iconMarkers.addLayer( L.marker([34.6811603,133.9011375]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1q9A1J5EOotSdKweN_rEE8teFts0VLwBw" width="300" height="200">
+   <p>岡山市立京山中学校　気孔の詰まり５％</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.6866393,133.9269586]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1J_ySdRuNMR36_f8Dt33YEZcjV6laGxVm" width="300" height="200">
+   <p>岡山市立岡北中学校</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.6499468,133.8511262]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1WFpG0J8ddzssTWwmQSCraA9HnJGzIFoe" width="300" height="200">
+   <p>岡山市立吉備中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.6684088,133.9276762]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1tyFxCkFJn8ez7-8CWZREmx3dDvBTZ5oO" width="300" height="200">
+   <p>岡山市立岡山中央中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.657526,133.913727]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=12oM3rv9GsmREnGwtwYEU27kTBCSk-9AL" width="300" height="200">
+   <p>岡山市立桑田中学校</p></div>`) );　
+
+    iconMarkers.addLayer( L.marker([34.7915792,133.9300779]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1BSF_PouTqXtEmeWig7dC_m5Uc83qA3H6" width="300" height="200">
+   <p>岡山市立御津中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.731612,133.904649]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1fhaxjY5bWvkVmyC2ZBiWRVoiHaEPdXy6" width="300" height="200">
+   <p>岡山市立香和中学校　気孔の詰まり２９.７５％</p></div>`) );
+
+  iconMarkers.addLayer( L.marker([34.681464,133.966827]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=14GSOhEXCOdSaKjG9Qvoq5lvXWqReAbfT" width="300" height="200">
+   <p>岡山市立竜操中学校　気孔の詰まり１３.０４％</p></div>`) );　
+
+    iconMarkers.addLayer( L.marker([34.666626,133.950451]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1biVK1nZXHk4_8vZmIokHqWU4Kj8th_M1" width="300" height="200">
+   <p>岡山市立操山中学校　気孔の詰まり41.55％</p></div>`) );　
+
+    iconMarkers.addLayer( L.marker([34.6926047,133.9592372]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=15AhWel4SVlqeMhWXANR0gnLPx2nSIPFF" width="300" height="200">
+   <p>岡山市立高島中学校</p></div>`) ); 　
+
+     iconMarkers.addLayer( L.marker([34.631464,133.96827]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1vz4aamVpJhAFL9ZHf2i0LBwms0vsgudP" width="300" height="200">
+   <p>岡山市立操南中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.663627,133.989544]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=12m44dXLfwWTupgHV2WKLasLvD-bXFscH" width="300" height="200">
+   <p>岡山市立富山中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.6663199,134.0029936]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=12O3RdoRsjk_1jMhJI87XbBO62a0SochJ" width="300" height="200">
+   <p>岡山市立旭東中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.636301,134.013588]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1225TN_RCBeDI_hn7xl4oR3Y7B2KnEMDN" width="300" height="200">
+   <p>岡山市立上南中学校</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.622068,134.06051]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1eA5NEqpoiynHiNaRcRluoZoXHekBoQr0" width="300" height="200">
+   <p>岡山市立山南学園</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.65837,134.032982]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1AqCQOIZQKIpGDnuqWvjaB1rwp03QLljW" width="300" height="200">
+   <p>岡山市立西大寺中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.738332,134.040047]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1AqCQOIZQKIpGDnuqWvjaB1rwp03QLljW" width="300" height="200">
+   <p>岡山市立瀬戸中学校</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.6983258,134.0518611]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1AqCQOIZQKIpGDnuqWvjaB1rwp03QLljW" width="300" height="200">
+   <p>岡山市立上道中学校</p></div>`) );
+
+    iconMarkers.addLayer( L.marker([34.5913179,133.9734818]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=18MLu5Pl2At3W6Ffou8Yn7bjuHJ47MIZO" width="300" height="200">
+   <p>岡山市立光南台中学校　気孔の詰まり９％</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.652663,133.934178]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1BKbZDG8-sDA84cfGUGrFt8a7gZ_4l3rd" width="300" height="200">
+   <p>岡山市立東山中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.5399079,133.8671208]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1Qa4jKpdMOMvx0TDKlSd4ZXL8bF-gIWCa" width="300" height="200">
+   <p>岡山市立灘崎中学校</p></div>`) );
+
+     iconMarkers.addLayer( L.marker([34.6152068,133.8647131]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1trSs7HFlRaJjHvwHGmpdZ0mnxvV14p_4" width="300" height="200">
+   <p>岡山市立妹尾中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.6020337,133.9386546]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1fnmi05TRwqMcWRP-SI8IEDUXjWksy1nX" width="300" height="200">
+   <p>岡山市立福南中学校　気孔の詰まり２５％</p></div>`) );　
+
+
+     iconMarkers.addLayer( L.marker([34.6225056,133.9009266]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1shSERaQqhzMvGDiO__aTOV-_fD75jVZY" width="300" height="200">
+   <p>岡山市立芳田中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.5887263,133.852826]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1zIKytoQPY_pDPDzqAWOeLrI_wxZcuVnE" width="300" height="200">
+   <p>岡山市立興除中学校　気孔の詰まり５.２４％</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.5864798,133.8758715]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1cU7tB7EKTCWKX9iXwbYuOw_v_IH83CoW" width="300" height="200">
+   <p>岡山市立藤田中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.6226719,133.9170045]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1WDBJ65vvv-mD6F_8RrTtRVbi5B6WUCP3" width="300" height="200">
+   <p>岡山市立芳泉中学校</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.616551,133.944125]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=1iB5J72FHABlhqP_AXlH1KdnkZHTRo6Qa" width="300" height="200">
+   <p>岡山市立福浜中学校　気孔の詰まり３４％</p></div>`) );　
+
+     iconMarkers.addLayer( L.marker([34.625191,133.859503]).bindPopup(
+   `<div><img src="https://drive.google.com/uc?export=view&id=17T3Om43K-_2ojxnAp8wxNG3vYKVOmf-_" width="300" height="200">
+   <p>岡山市立福田中学校　気孔の詰まり１０％</p></div>`) ); 　
+
+     //マーカーを地図上に表示
+     iconMarkers.addTo(mymap);
+
+     //削除→mymap.setView([35.6896, 139.6918], 9);
+
+     //グループが全て収まる座標とズームで表示
+     mymap.fitBounds(iconMarkers.getBounds());
+
+
+   });
+     </script>
+   </body>
+ </html>
